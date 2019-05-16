@@ -1,6 +1,7 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { KafkaClient, Consumer } from 'kafka-node';
+import { Injectable } from '@nestjs/common';
+import { Consumer, KafkaClient } from 'kafka-node';
 import { Subject } from 'rxjs';
+
 import { KafakConsumer } from './kafka.interfaces';
 
 @Injectable()
@@ -11,7 +12,7 @@ export class KafkaService {
     public consumerTopicEvents = new Subject<any>();
     public consumerErrors = new Subject<any>();
 
-    constructor(private logger: Logger) {
+    constructor() {
         // Create a client ... aka connection to kafak host
         this.client = new KafkaClient({ kafkaHost: 'localhost:9092' });
     }
